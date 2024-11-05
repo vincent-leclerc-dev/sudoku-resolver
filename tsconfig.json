@@ -22,12 +22,27 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
+      "@pages/*": [
+        "src/app/pages/*"
+      ],
+      "@stores/*": [
+        "src/app/stores/*"
+      ],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }
