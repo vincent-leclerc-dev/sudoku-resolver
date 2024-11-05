@@ -1,7 +1,7 @@
-<div class="flex flex-wrap justify-center items-center w-56 m-4">
-  <h1>selected number: {{sudoku().selectedNumber}}</h1>
-  @for(num of nums; track $index) {
-  <button (click)="onClick(num)"
-    class="w-16 h-16 mr-1 mb-1 bg-stone-200 hover:bg-emerald-400 rounded-lg">{{num}}</button>
+<div
+  [style.background-color]="color"
+  class="flex items-center justify-center w-64 h-64 m-2 p-2 flex-wrap rounded-xl">
+  @for (num of nums; track $index) {
+    <app-key [key]="num"></app-key>
   }
 </div>

@@ -1,24 +1,41 @@
-<h1>selected number: {{sudoku().selectedNumber}}</h1>
-<div class="flex flex-col justify-center items-center">
-  @for(row of rows; track $index) {
-  <div class="flex">
-    <div class="flex items-center justify-center w-{{CELL_SIZE}} h-{{CELL_SIZE}} text-stone-500">{{$index+1}}</div>
-    <div class="flex items-center justify-center w-0 border-r-4 border-black"></div>
-    <div
-      class="flex flex-row {{($index === 0) ? 'border-t-4': ''}} {{($index % 3 === 2) ? 'border-b-4' : 'border-b'}} border-black">
-      @for(col of row; track $index) {
-      <input type="text" value=""
-        class="w-{{CELL_SIZE}} h-{{CELL_SIZE}} {{($index % 3 === 2) ? 'border-r-4' : 'border-r'}} border-black text-center outline-none" />
-      }
-    </div>
+<div [style.background-color]="color">
+  <h1>selected number: {{ storeService.selectedNumber() }}</h1>
+  <div class="flex flex-col justify-center items-center">
+    @for (row of rows; track $index) {
+      <div class="flex">
+        <div
+          class="flex items-center justify-center w-{{ CELL_SIZE }} h-{{
+            CELL_SIZE
+          }} text-stone-500">
+          {{ $index + 1 }}
+        </div>
+        <div class="flex items-center justify-center w-0 border-r-4 border-black"></div>
+        <div
+          class="flex flex-row {{ $index === 0 ? 'border-t-4' : '' }} {{
+            $index % 3 === 2 ? 'border-b-4' : 'border-b'
+          }} border-black">
+          @for (col of row; track $index) {
+            <input
+              type="text"
+              value=""
+              class="w-{{ CELL_SIZE }} h-{{ CELL_SIZE }} {{
+                $index % 3 === 2 ? 'border-r-4' : 'border-r'
+              }} border-black text-center outline-none" />
+          }
+        </div>
+      </div>
+    }
   </div>
-  }
-</div>
-<div class="flex flex-row items-center justify-center ml-{{CELL_SIZE}} h-{{CELL_SIZE}}">
-  @for(row of rows; track $index) {
-  <div class="flex flex-row items-center justify-center w-{{CELL_SIZE}} h-{{CELL_SIZE}}">
-    <div class="flex items-center justify-center w-{{CELL_SIZE}} h-{{CELL_SIZE}} rounded-full text-stone-500">
-      {{$index+1}}</div>
+  <div class="flex flex-row items-center justify-center ml-{{ CELL_SIZE }} h-{{ CELL_SIZE }}">
+    @for (row of rows; track $index) {
+      <div class="flex flex-row items-center justify-center w-{{ CELL_SIZE }} h-{{ CELL_SIZE }}">
+        <div
+          class="flex items-center justify-center w-{{ CELL_SIZE }} h-{{
+            CELL_SIZE
+          }} rounded-full text-stone-500">
+          {{ $index + 1 }}
+        </div>
+      </div>
+    }
   </div>
-  }
 </div>

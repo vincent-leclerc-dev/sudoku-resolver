@@ -1,0 +1,9 @@
+**/*.js
+/.angular
+/.husky
+/.nx
+/.vscode
+/node_modules
+/dist
+/build
+/coverage

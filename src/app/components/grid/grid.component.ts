@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { BaseComponent } from '@components/base.component';
 import { ICell } from '@models/cell.interface';
 import { SudokuStore } from '@stores/sudoku.store';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-grid',
@@ -10,18 +12,17 @@ import { SudokuStore } from '@stores/sudoku.store';
   providers: [SudokuStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GridComponent implements OnInit{
-  readonly store = inject(SudokuStore);
+export class GridComponent extends BaseComponent {
+  public storeService = inject(StoreService);
 
-  readonly sudoku = this.store.state.asReadonly();
-
-  selectedNumber: Signal<number> | undefined;
   public GRID_SIZE = 9;
   public CELL_SIZE = 8;
 
   public rows: ICell[][] = [];
 
   constructor() {
+    super();
+
     /*
     let i = 0;
     for(let l = 0; l < this.GRID_SIZE; l++) {
@@ -34,9 +35,4 @@ export class GridComponent implements OnInit{
     }
       */
   }
-
-  ngOnInit(): void {
-    console.log('grid', this.store.select('selectedNumber'));
-  }
-
 }
