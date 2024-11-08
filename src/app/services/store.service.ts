@@ -1,18 +1,21 @@
-import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { computed, Injectable, Signal, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StoreService {
-  #selectedNumberBs = new BehaviorSubject<number>(0);
-  #selectedNumber = signal(0);
+export class StoreService<T> {
+  private _state = signal({} as T);
+  public state = this._state.asReadonly();
 
-  selectedNumberBs$ = this.#selectedNumberBs.asObservable();
-  selectedNumber = this.#selectedNumber.asReadonly();
+  public set<K extends keyof T>(key: K, data: T[K]) {
+    this._state.update((currentValue) => ({ ...currentValue, [key]: data }));
+  }
 
-  selectNumber(n: number) {
-    this.#selectedNumberBs.next(n);
-    this.#selectedNumber.update((currentValue) => n);
+  public setState(partialState: Partial<T>): void {
+    this._state.update((currentValue) => ({ ...currentValue, ...partialState }));
+  }
+
+  public select<K extends keyof T>(key: K): Signal<T[K]> {
+    return computed(() => this.state()[key]);
   }
 }

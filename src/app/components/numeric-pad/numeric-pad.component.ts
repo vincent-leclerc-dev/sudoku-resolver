@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BaseComponent } from '@components/base.component';
 import { KeyComponent } from './key.component';
 
 @Component({
@@ -9,11 +8,10 @@ import { KeyComponent } from './key.component';
   templateUrl: './numeric-pad.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumericPadComponent extends BaseComponent {
+export class NumericPadComponent {
   public nums: number[] = [];
 
   constructor() {
-    super();
     for (let n = 1; n <= 9; n++) {
       this.nums.push(n);
     }

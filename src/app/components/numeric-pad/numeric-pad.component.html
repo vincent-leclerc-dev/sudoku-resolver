@@ -1,6 +1,5 @@
 <div
-  [style.background-color]="color"
-  class="flex items-center justify-center w-64 h-64 m-2 p-2 flex-wrap rounded-xl">
+  class="flex items-center justify-center w-36 h-36 m-2 p-2 flex-wrap border border-neutral-400 bg-neutral-300 rounded">
   @for (num of nums; track $index) {
     <app-key [key]="num"></app-key>
   }
